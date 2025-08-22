@@ -13,7 +13,7 @@ public class LibrosDTO {
 
     private Long id;
 
-    @NotBlank
+    @NotBlank //Validacion para que no permita dejar el campo en blanco
     private String titulo;
 
     @NotBlank
@@ -24,7 +24,7 @@ public class LibrosDTO {
     @NotBlank
     private String genero;
 
-    @Positive(message = "Debe ser positivo")
+    @Positive(message = "Debe ser positivo") //Validacion para que el ID sea un numero positivo
     private Long id_autor;
 
 }

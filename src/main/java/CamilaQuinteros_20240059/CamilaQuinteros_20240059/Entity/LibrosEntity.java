@@ -12,6 +12,7 @@ import lombok.ToString;
 @ToString @EqualsAndHashCode
 public class LibrosEntity {
 
+    //Aca definimos los campos y la tabla que se utilizaran
     @Id
     @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_libro")
@@ -19,7 +20,7 @@ public class LibrosEntity {
 
     private Long id;
 
-    @Column (name = "TITULO")
+    @Column (name = "TITULO") //aca escribimos justo como esta en nuestra base de datos
     private String titulo;
 
     @Column (name = "ISBN")

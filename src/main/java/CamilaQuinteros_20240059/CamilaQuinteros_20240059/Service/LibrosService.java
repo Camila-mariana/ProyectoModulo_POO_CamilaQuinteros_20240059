@@ -30,8 +30,8 @@ public class LibrosService {
 
     public LibrosDTO buscarLibro(Long id){
         if (repo.existsById(id)){
-            LibrosEntity entity = repo.getReferenceById(id);
-            return new LibrosDTO(entity);
+            LibrosEntity entity = repo.getReferenceById(id); //Aca se indica que se utilizara el id como referencia al buscar
+            return new LibrosDTO();
         }
         return null;
     }
@@ -45,6 +45,9 @@ public class LibrosService {
             LibrosEntity libroGuardado = repo.save(entity);
             return convertirADTO(libroGuardado);
         }catch (Exception e){
+
+            //Atrapamos y mostramos el error de que no se pudo registrar al usuario
+
             log.error("Error al registrar:" + e.getMessage());
             throw new ExceptionLibroNoRegistrado("Error al registrar");
 
@@ -83,21 +86,6 @@ public class LibrosService {
         existente.setId_autor(json.getId_autor());
         LibrosEntity libroActualizado = repo.save(existente);
         return convertirADTO(libroActualizado);
-    }
-
-    public boolean eliminarLibro(Long id){
-        try {
-            LibrosEntity libroExistente = repo.findById(id).orElse(null);
-            if (libroExistente ! = null){
-                repo.deleteById(id);
-                return true;
-            }else {
-                return false;
-        }catch (EmptyResultDataAccessException e){
-                throw new EmptyResultDataAccessException("No se encontro un libro co el ID: " + id "para eliminar");
-            }
-
-        }
     }
 }
 
